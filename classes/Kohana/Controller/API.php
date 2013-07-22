@@ -298,7 +298,8 @@ abstract class Kohana_Controller_API extends OAuth2_Controller
 			);
 
 			// Developement error
-			if (Kohana::$environment === Kohana::DEVELOPMENT)
+			if (Kohana::$environment === Kohana::DEVELOPMENT OR
+				$this->request->current() !== Request::initial())
 			{
 				$this->_response_payload = array(
 					'message' => $e->getMessage(),
