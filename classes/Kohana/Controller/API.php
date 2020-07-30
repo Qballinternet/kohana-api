@@ -290,6 +290,10 @@ abstract class Kohana_Controller_API extends OAuth2_Controller
 			// Log exception for debugging
 			Kohana::$log->add(Log::CRITICAL, $e);
 
+			if (Kohana::$environment >= Kohana::TESTING) {
+				throw $e;
+			}
+
 			$this->response->status(500);
 
 			$this->_response_metadata = array(
