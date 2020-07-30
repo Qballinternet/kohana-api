@@ -247,6 +247,9 @@ abstract class Kohana_Controller_API extends OAuth2_Controller
 			}
 			catch (Exception $e)
 			{
+				if (Kohana::$environment >= Kohana::TESTING) {
+					throw $e;
+				}
 				$this->response->status(500);
 				$this->_response_payload = NULL;
 			}
